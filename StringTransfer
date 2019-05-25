@@ -1,0 +1,21 @@
+// String -> int
+int i = Integer.parseInt(String str);
+
+// int -> String
+String str = Integer.toString(int i);
+String str = String.valueOf(int i);
+
+// char -> String (한문자)
+String str = Character.toString(char cr);
+String str = String.valueOf(char cr);
+
+// String -> char (한문자)
+char cr = str.charAt(0);
+
+// String -> char[ ] (여러문자)
+String str = "HELLO";
+char[] array = str.toCharArray(); // ['H','E','L','L','O'];
+
+// char[ ] -> String (여러문자)
+char[] array = {'H','E','L','L','O'};
+String str = String.valueOf(array);
