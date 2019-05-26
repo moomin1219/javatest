@@ -1,4 +1,7 @@
-
+// 1.client 에서 INPUT 폴더에 있는 파일들을 전부 server로 보내고 
+//   INPUT 폴더에 있는 파일들을 BACKUP 폴더로 옮긴다. 
+// 2. server 에서는  clinet 에서 보낸 파일들을 받아서 OUTPUT 폴더에 저장한다. 
+// * 실행 시 server 를 먼저 실행 시킨 후 client 실행.
 
 import java.io.DataOutputStream;
 import java.io.File;
