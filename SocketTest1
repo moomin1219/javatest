@@ -1,0 +1,87 @@
+// 1.client 에서 INPUT 폴더에 있는 파일들을 전부 server로 보내고 
+//   INPUT 폴더에 있는 파일들을 BACKUP 폴더로 옮긴다. 
+// 2. server 에서는  clinet 에서 보낸 파일들을 받아서 OUTPUT 폴더에 저장한다. 
+// * 실행 시 server 를 먼저 실행 시킨 후 client 실행.
+
+import java.io.BufferedOutputStream;
+import java.io.DataOutputStream;
+import java.io.File;
+import java.io.IOException;
+import java.net.Socket;
+import java.nio.file.Files;
+
+public class Client1 {
+
+   public static void main(String[] args) {
+       File directory  = new File("./INPUT");
+       File[] fList = directory.listFiles();
+		
+       File backupFolder = new File ("./BACKUP");
+       if(!backupFolder.exists()) {
+           backupFolder.mkdirs();
+       }
+		
+       for (File file: fList) {
+	        try {
+		          Socket socket = new Socket("127.0.0.1", 9090);
+		          String fileName = file.getName();
+		          BufferedOutputStream out = new BufferedOutputStream(socket.getOutputStream());
+		          DataOutputStream d = new DataOutputStream(out);
+	            d.writeUTF(fileName);
+		          Files.copy(file.toPath(), d);
+		          if(file.renameTo(new File(backupFolder+"/"+fileName))) { 
+				 
+              } else {
+		            System.out.println("FILE BACKUP ERROR");
+	            }
+		          out.close();
+		          socket.close();
+	        } catch (IOException e) {
+		          e.printStackTrace();
+	        }
+	    }
+	 }
+}
+
+
+
+import java.io.BufferedInputStream;
+import java.io.DataInputStream;
+import java.io.File;
+import java.io.IOException;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
+public class Server1 {
+
+   public static void main(String[] args) {
+       File serverFolder = new File("./OUTPUT");
+       if(!serverFolder.exists()) {
+	          serverFolder.mkdirs();
+       }
+       ServerSocket listener = null;
+		
+       try {
+	        listener = new ServerSocket(9090);
+	        while(true) {
+              Socket socket = listener.accept();
+	            BufferedInputStream in = new BufferedInputStream(socket.getInputStream());
+              DataInputStream d = new DataInputStream(in);
+	            String fileName = d.readUTF();
+	            Files.copy(d,Paths.get("./OUTPUT/"+fileName));
+	            socket.close();
+	        }
+			
+       } catch (IOException e) {
+           e.printStackTrace();
+       } finally {
+	        try {
+	            listener.close();	
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	        }
+       }
+   }
+}
