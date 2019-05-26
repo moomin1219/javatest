@@ -1,0 +1,94 @@
+// 파일 존재 여부
+File f = new File("./grade.txt");
+if(f.isFile()) {
+  System.out.println("파일 있음");
+}
+
+// 폴더 존재 여부
+File d = new File("./TEST");
+if (d.isDirectory()) {
+  System.out.println("폴더 있음");
+}
+
+// 파일 or 폴더 존재 여부
+File fd = new File("./TEST");
+if (fd.exists()) {
+  System.out.println("존재함");
+} 
+ 
+
+File folder = new File("./TEST");
+File[] fList = folder.listFiles();
+
+// 폴더 내의 모든 파일 읽는 법
+for (File file : fList){
+	if(file.isFile()) {
+		System.out.println(file.getName());
+	}
+}
+
+// 폴더 내의 모든 폴더 읽는 법
+for (File file : fList){
+	if(file.isDirectory()) {
+		System.out.println(file.getName());
+	}
+}
+
+// 폴더 내의 모든 폴더or파일 읽는 법
+for (File file : fList){
+	System.out.println(file.getName());
+}
+
+
+// 폴더 생성
+File destFolder = new File("./BOOK");
+if(!destFolder.exists()) {
+	destFolder.mkdirs();
+}
+
+
+// 폴더와 하위 폴더에 있는 모든 파일 읽어오기1
+import java.io.File;
+
+public class FILES_FROM_DIR_AND_SUBDIR {
+	
+   public static void main(String[] args) {
+	listFilesAndFilesSubDirectories("./TEST");	
+   }
+
+   private static void listFilesAndFilesSubDirectories(String dirName) {
+        File directory = new File(dirName);
+
+        File[] fList = directory.listFiles();
+        for (File file : fList){
+            if (file.isFile()){
+                //System.out.println(file.getAbsolutePath());
+            	System.out.println(file.getName());
+            } else if (file.isDirectory()){
+                listFilesAndFilesSubDirectories(file.getAbsolutePath());
+            }
+        }
+   }
+}
+
+
+//폴더와 하위 폴더에 있는 모든 파일 읽어오기2
+File folder = new File("./TEST");
+ArrayList<File> subFiles = new ArrayList<File>();
+findSubFiles(folder, subFiles);
+
+private static void findSubFiles(File parentFile, ArrayList<File> subFiles) {
+	if (parentFile.isFile()) { 
+		subFiles.add(parentFile); 
+	} else if (parentFile.isDirectory()) { 
+		subFiles.add(parentFile); 
+		File[] childFiles = parentFile.listFiles(); 
+		for (File childFile : childFiles) { 
+			findSubFiles(childFile, subFiles); 
+			} 
+	}		
+}
+
+
+https://dzone.com/articles/java-example-list-all-files
+재귀호출을 이용한 하위의 모든 파일 탐색 https://myeonguni.tistory.com/806
