@@ -1,0 +1,72 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class ConsoleTest {
+
+  public static void main(String[] args) throws IOException {
+	BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+	String input;
+		
+	while(true) {
+		System.out.print("INPUT : ");
+		input = br.readLine();
+		if(input.equals("YES")) {
+			System.out.println("continue");
+		} else if (input.equals("NO")) {
+			System.out.println("terminate");
+			break;
+		}
+	}
+
+	while(true) {
+		input = br.readLine();
+		if(input.equals("HELLO")) {
+			System.out.println("continue");
+		} else if (input.equals("BYE")) {
+			System.out.println("terminate");
+			break;
+		}
+	}
+  }
+}
+
+
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class ConsoleTest2 {
+
+	public static void main(String[] args) throws IOException {
+	  BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+	  String input;
+		
+	  Boolean logout = false;
+	  while(!logout) {
+		input = br.readLine();
+		String busId = input;
+		if(!input.equals("LOGOUT")) {
+		  Boolean done = false;
+		  while(!done) {
+			input = br.readLine();
+			if(!input.equals("DONE")) {
+			    String cardId = input;
+			    System.out.println(busId);
+			    System.out.println(cardId);
+			} else {
+			    done = true;
+			    break;
+			}
+		   }
+		} else {
+		   logout = true;
+		}
+	   }	
+     }
+}
+
+
+
+http://castleone88.blogspot.kr/2016/02/java_3.html
