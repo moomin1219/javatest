@@ -1,0 +1,16 @@
+
+수학 함수
+http://tcpschool.com/java/java_api_math
+
+연산자
+http://dpug.tistory.com/33#.WvGadu-FNEY
+
+// 0부터 9까지 index 찍기 (0 ~ 9)
+for (int i = 0; i < 10; i++) {
+   System.out.println(i);
+}
+   
+// 9부터 0까지 index 찍기 (반대) (9 ~ 0)
+for (int i = 9; i >=0; i--) {
+   System.out.println(i);
+}
