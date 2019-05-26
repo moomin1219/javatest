@@ -1,0 +1,96 @@
+// Thread 예제 1 (3개 파일) : ThreadTest.java, ThreadClass1.java, ThreadClass2.java
+public class ThreadTest {
+
+	public static void main(String[] args) throws InterruptedException {
+		ThreadClass1 m1 = new ThreadClass1();
+		Thread t1 = new Thread(m1);
+		t1.start();
+		
+		ThreadClass2 m2 = new ThreadClass2();
+		Thread t2 = new Thread(m2);
+		t2.start();
+		
+		for(int i=0; i<10; i++) {
+			System.out.println("[Main] " + i);
+			Thread.sleep(5);
+		}
+		
+		t1.join();
+		t2.join();
+	}
+}
+
+
+public class ThreadClass1 implements Runnable {
+
+	@Override
+	public void run() {
+		for(int i=0; i<10; i++) {
+			System.out.println("[Thread1] " +i);
+			try	{
+				Thread.sleep(5);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+}
+
+
+public class ThreadClass2 implements Runnable {
+
+	@Override
+	public void run() {
+		for(int i=0; i<10; i++) {
+			System.out.println("[Thread2] " +i);
+			try	{
+				Thread.sleep(5);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}	
+	}
+
+}
+
+
+
+// Thread 예제 2 (1개 파일)
+public class Thread_Sample {
+
+	public static void main(String[] args) throws InterruptedException {
+		ThreadClass tc1 = new ThreadClass("[Thread1] ");
+		ThreadClass tc2 = new ThreadClass("[Thraed2] ");
+		tc1.start();
+		tc2.start();
+		
+		for(int i=0; i<10; i++) {
+			System.out.println("[Main] " +i);
+			Thread.sleep(10);
+		}
+		
+		tc1.join();
+		tc2.join();
+	}
+}
+
+class ThreadClass extends Thread {
+
+	String threadName;
+	public ThreadClass(String name) {
+		this.threadName = name;
+	}
+	
+	public void run() {
+		for (int i=0; i<10; i++) {
+			System.out.println(threadName+i);
+			try {
+				sleep(10);
+			} catch (InterruptedException e ) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+}
