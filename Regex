@@ -2,14 +2,12 @@
 String str = "qweQWE가!@#$%^&*()[123]";
 String pattern = "[^\uAC00-\uD7A3xfe0-9a-zA-Z\\s]"; //특수문자 제거
 str = str.replaceAll(pattern, "");
-
 [결과]
 qweQWE가123
 
 
 String str = "    A B C ^ ^!";
 str = str.replaceAll("\\s", ""); //모든 공백 제거
-
 [결과]
 ABC^^!
 
@@ -17,7 +15,6 @@ ABC^^!
 String str = "1qwe23$57*(&)][bVX";
 String pattern = "[0-9]*"; //숫자 제거
 str = str.replaceAll(pattern, ""); 
-
 [결과]
 qwe$*(&)][bVX
 
@@ -25,7 +22,6 @@ qwe$*(&)][bVX
 String str = "1qwe23$57*(&)][bXYZ";
 String pattern = "[a-zA-Z]*"; //영문자 제거
 str = str.replaceAll(pattern, ""); 
-
 [결과]
 123$57*(&)][
 
@@ -33,7 +29,6 @@ str = str.replaceAll(pattern, "");
 String str = "1qwe23$57*(&)][bXYZ";
 String pattern = "[a-z]*"; //영소문자 제거
 str = str.replaceAll(pattern, "");
-
 [결과]
 123$57*(&)][XYZ
 
@@ -41,7 +36,6 @@ str = str.replaceAll(pattern, "");
 String str = "1qwe23$57*(&)][bXYZ";
 String pattern = "[A-Z]*"; //영대문자 제거
 str = str.replaceAll(pattern, "");
-
 [결과]
 1qwe23$57*(&)][b
 
@@ -49,7 +43,6 @@ str = str.replaceAll(pattern, "");
 String str = "1qwe23$57*(&)][bVXZ";
 String pattern = "[a-zA-Z0-9]*"; //영문자 및 숫자 제거 (특수문자만 남김)
 str = str.replaceAll(pattern, "");
-
 [결과]
 $*(&)][
 
@@ -57,7 +50,6 @@ $*(&)][
 String str = "가낢1qwe23$57*(&)][bXYZ핳";
 String pattern = "[가-힣]*"; //한글 제거
 str = str.replaceAll(pattern, "");
-
 [결과]
 1qwe23$57*(&)][bXYZ
 
@@ -67,7 +59,6 @@ String pattern1 = "[a-zA-Z0-9]*"; // 영문자 및 숫자 제거
 str = str.replaceAll(pattern1,"");
 String pattern2 = "[^\uAC00-\uD7A3xfe0-9a-zA-Z\\s]"; // 특수문자 제거
 str = str.replaceAll(pattern2, "");
-
 [결과] //한글만 남김
 가낢핳 
 
