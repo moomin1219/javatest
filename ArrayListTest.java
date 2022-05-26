@@ -22,7 +22,8 @@ public class ArrayListTest {
 		print1(stringList);
 		
 		//내림차순 정렬
-		Collections.sort(stringList, new AscendingString()); 
+		stringList.sort(Collections.reverseOrder()); //1안
+		Collections.sort(stringList, new AscendingString()); //2안 
 		print1(stringList);
 		
 		/* int Array */
@@ -39,7 +40,8 @@ public class ArrayListTest {
 		print2(intList);
 		
 		//내림차순 정렬
-		Collections.sort(intList, new AscendingInteger()); 
+		intList.sort(Collections.reverseOrder()); //1안
+		Collections.sort(intList, new AscendingInteger()); //2안 
 		print2(intList);
 	}
 
