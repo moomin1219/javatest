@@ -84,8 +84,8 @@ public class MyServlet extends HttpServlet {
 			String responseBody = contentResponse.getContentAsString();
 			System.out.println(" responseBody of Request => " + responseBody);
 			// ex) {"result": "Auth Check.(POST)(no_parameter)"}
-			//	   {"result": "Auth Check.(GET)(GET_parameter, id: lgcns)"}
-			//	   {"result": "Auth Check.(GET)(Path, /auth/lgcns)"}
+			//     {"result": "Auth Check.(GET)(GET_parameter, id: lgcns)"}
+			//     {"result": "Auth Check.(GET)(Path, /auth/lgcns)"}
 			//     {"result": "Service Init.", "data": [{"status": "200", "result": "Auth Check.(POST)(no_parameter)"}]}
 			
 			httpClient.stop();
