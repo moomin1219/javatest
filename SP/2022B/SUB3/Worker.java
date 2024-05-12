@@ -1,6 +1,6 @@
 import java.util.List;
 
-public class Woker extends AbstractWorker {
+public class Worker extends AbstractWorker {
 	
 	/*
 	 * Worker 생성
